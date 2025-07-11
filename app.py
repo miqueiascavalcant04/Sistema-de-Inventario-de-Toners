@@ -4,11 +4,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Caminho do seu arquivo Excel
 ARQUIVO_EXCEL = 'Inventario_Impressoras.xlsx'
 NOME_PLANILHA = 'Sheet1'
 
-# Página HTML simples
 html = """
 <!DOCTYPE html>
 <html> 
@@ -38,11 +36,9 @@ def registrar():
         data_hoje = datetime.now().strftime("%d/%m/%Y %H:%M")
 
         try:
-            # Abrir e editar a planilha
             wb = load_workbook(ARQUIVO_EXCEL)
             sheet = wb[NOME_PLANILHA]
 
-            # Inserir na próxima linha vazia
             proxima_linha = sheet.max_row + 1
             sheet.cell(row=proxima_linha, column=1).value = data_hoje
             sheet.cell(row=proxima_linha, column=2).value = impressora
